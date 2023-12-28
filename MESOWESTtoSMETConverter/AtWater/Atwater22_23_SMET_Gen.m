@@ -32,11 +32,19 @@ matlab_results_AGD = webread(mesowest_url_AGD);
 HS_AGD = (matlab_results_AGD.STATION.OBSERVATIONS.snow_depth_set_1')/100; %snow depth in meters
 
 dnum_AGD = parse_mesowest_date(matlab_results_AGD);
-%%
+%% Convert to time table to resample the vars
 %need to remap to hourly data for both datasets...
-ATH_TT = timetable(datetime(datevec(dnum)),HS');
-%Then merge datasets
+ATH_TT = retime(timetable(datetime(datevec(dnum)),movmean(HS',5)),'hourly','linear');
+AGD_TT = retime(timetable(datetime(datevec(dnum_AGD)),HS_AGD'),'hourly','linear');
 
+
+%Plot HS 
+figure()
+plot(AGD_TT.Time,movmean(AGD_TT.Var1,5))
+hold on
+plot(ATH_TT.Time,movmean(ATH_TT.Var1,5))
+legend('AGD','ATH')
+ylabel('HST')
 %% Now the ANN for gapfilling the solar rad...
 
 %%
