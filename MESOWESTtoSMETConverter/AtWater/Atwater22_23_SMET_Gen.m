@@ -14,8 +14,8 @@
 clear all;
 close all;
 
-start_time = '202210050000'; %YYYYMMDDHHMM UTC;
-end_time =   '202306010000';
+start_time = '202310050000'; %YYYYMMDDHHMM UTC;
+end_time =   '202401290000';
 %get Mesowest data
 mesowest_url = strcat('http://api.mesowest.net/v2/stations/timeseries?stid=ATH20&token=3d5845d69f0e47aca3f810de0bb6fd3f&start=',start_time,'&end=',end_time)
 
@@ -30,7 +30,8 @@ RH = (matlab_results.STATION.OBSERVATIONS.relative_humidity_set_1')/100; %Snowpa
 ISWR = matlab_results.STATION.OBSERVATIONS.solar_radiation_set_1'; %Incoming shortwave radiation (W/m^w)
 VW = matlab_results.STATION.OBSERVATIONS.wind_speed_set_1'; %Wind speed (m/s)
 DW = matlab_results.STATION.OBSERVATIONS.wind_direction_set_1'; %Wind direction
-HS = (matlab_results.STATION.OBSERVATIONS.snow_depth_set_1')/100; %snow depth in meters
+HS = (matlab_results.STATION.OBSERVATIONS.snow_depth_set_1')/1000; %snow depth in meters
+HS(1:452) = 0;
 TSG = zeros(length(HS))+273.15;%Assume ground surface below snow is 0 C
 %% Merge Guard station snow depth
 mesowest_url_AGD = strcat('http://api.mesowest.net/v2/stations/timeseries?stid=AGD&token=3d5845d69f0e47aca3f810de0bb6fd3f&start=',start_time,'&end=',end_time)
@@ -43,7 +44,7 @@ dnum_AGD = parse_mesowest_date(matlab_results_AGD);
 %% Convert to time table to resample the vars
 %need to remap to hourly data for both datasets...
 % TO: Remap all vars to 1 hr time step
-ATH_TT = retime(timetable(datetime(datevec(dnum)),HS'),'hourly','linear');
+ATH_TT = retime(timetable(datetime(datevec(dnum)),HS',ISWR'),'hourly','linear');
 AGD_TT = retime(timetable(datetime(datevec(dnum_AGD)),HS_AGD'),'hourly','linear');
 
 
@@ -77,7 +78,7 @@ StationID =  matlab_results.STATION.STID;%From Mesowest data
 StationName = matlab_results.STATION.NAME;
 latitude = str2num(matlab_results.STATION.LATITUDE); %Site lat
 longitude = str2num(matlab_results.STATION.LONGITUDE); %Site lon
-altitude = str2num(matlab_results.STATION.ELEV_DEM);  %Site altitude in meters above sea level
+altitude = str2num(matlab_results.STATION.ELEV_DEM)*0.3048;  %Site altitude in ft, converted to m above sea level
 UTM_zone  = utmzone(latitude,longitude);
 %code from mapping toolbox to compute UTMX/UTMY from lat/lon
 [ellipsoid,estr] = utmgeoid(UTM_zone);
@@ -137,9 +138,9 @@ end
 
 fclose(fileID);
 
-%Make some plots to quickly check data
+%% Make some plots to quickly check data
 figure;
-sgtitle('Reynolds Peak SNOWPACK data')
+sgtitle('Atwater SNOWPACK data')
 subplot(5,1,1);
 plot(dnum,VW);
 datetick('x','mm/dd','keeplimits');
@@ -149,6 +150,7 @@ datetickzoom
 
 subplot(5,1,2);
 plot(dnum,ISWR);
+%plot(ATH_TT.Time,ATH_TT.Var2);
 datetick('x','mm/dd','keeplimits');
 xlabel('UTC');
 ylabel('Solar Radiation (W/m^2)')
@@ -171,8 +173,9 @@ datetickzoom
 
 subplot(5,1,5);
 plot(dnum,HS);
+%plot(ATH_TT.Time,ATH_TT.Var1)
 datetick('x','mm/dd','keeplimits');
 xlabel('UTC');
-ylabel('Snow Depth (cm)')
+ylabel('Snow Depth (m)')
 datetickzoom
 
