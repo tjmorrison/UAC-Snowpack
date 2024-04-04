@@ -15,7 +15,7 @@ clear all;
 close all;
 
 start_time = '202310050000'; %YYYYMMDDHHMM UTC;
-end_time =   '202401290000';
+end_time =   '202404020000';
 %get Mesowest data
 mesowest_url = strcat('http://api.mesowest.net/v2/stations/timeseries?stid=ATH20&token=3d5845d69f0e47aca3f810de0bb6fd3f&start=',start_time,'&end=',end_time)
 
@@ -32,7 +32,19 @@ VW = matlab_results.STATION.OBSERVATIONS.wind_speed_set_1'; %Wind speed (m/s)
 DW = matlab_results.STATION.OBSERVATIONS.wind_direction_set_1'; %Wind direction
 HS = (matlab_results.STATION.OBSERVATIONS.snow_depth_set_1')/1000; %snow depth in meters
 HS(1:452) = 0;
+HS(4196) = HS(4195);
+HS(4197:4262) = HS(4197:4262)-2;
 TSG = zeros(length(HS))+273.15;%Assume ground surface below snow is 0 C
+
+% Find and replace nans with -999
+TA(isnan(TA))=-999;
+TSS(isnan(TSS))=-999;
+RH(isnan(RH))=-999;
+ISWR(isnan(ISWR))=-999;
+VW(isnan(VW))=-999;
+DW(isnan(DW))=-999;
+HS(isnan(HS))=-999;
+TSG(isnan(TSG))=-999;
 %% Merge Guard station snow depth
 mesowest_url_AGD = strcat('http://api.mesowest.net/v2/stations/timeseries?stid=AGD&token=3d5845d69f0e47aca3f810de0bb6fd3f&start=',start_time,'&end=',end_time)
 
@@ -87,14 +99,13 @@ utmstruct.zone = num2str(UTM_zone);
 utmstruct.geoid = ellipsoid;
 utmstruct = defaultm(utm(utmstruct));
 [UTMx,UTMy] = mfwdtran(utmstruct,latitude,longitude); 
-easting = UTMx; %UTMX
-northing = UTMy; %UTMY
+%easting = UTMx; %UTMX These are for switzerland and Lat Long is sufficient
+%northing = UTMy; %UTMY
 nodata = -999;
-tz = -6; %Utah offset between MST and UTC time zones MST = UTC - 6
+tz = 1; %Code for UTC is 1
 source = 'University of Utah EFD Lab';
 
 %Start writing out Snowpack .smet file
-
 fileID = fopen(strcat(StationID,'.smet'),'w');
 
 % SMET 1.1 ASCII
@@ -121,8 +132,8 @@ fprintf(fileID,'%s %s \n','station_name     =',StationName);
 fprintf(fileID,'%s %s \n','latitude         =',num2str(latitude));
 fprintf(fileID,'%s %s \n','longitude        =',num2str(longitude));
 fprintf(fileID,'%s %s \n','altitude         =',num2str(altitude));
-fprintf(fileID,'%s %s \n','easting          =',num2str(easting));
-fprintf(fileID,'%s %s \n','northing         =',num2str(northing));
+%fprintf(fileID,'%s %s \n','easting          =',num2str(easting));
+%fprintf(fileID,'%s %s \n','northing         =',num2str(northing));
 fprintf(fileID,'%s %s \n','nodata           =',num2str(nodata));
 fprintf(fileID,'%s %s \n','tz               =',num2str(tz));
 fprintf(fileID,'%s %s \n','source           =',source);

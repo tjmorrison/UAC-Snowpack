@@ -4,10 +4,11 @@
 %Eric Pardyjak 11/2020
 
  clear all;
- close all;
+ %close all;
 
-start_time = '202210050000'; %YYYYMMDDHHMM UTC;
-end_time =   '202306010000';
+start_time = '202310050000'; %YYYYMMDDHHMM UTC;
+end_time =   '202404040000';
+
 %get Mesowest data
 mesowest_url = strcat('http://api.mesowest.net/v2/stations/timeseries?stid=ATH20&token=3d5845d69f0e47aca3f810de0bb6fd3f&start=',start_time,'&end=',end_time)
 
@@ -31,8 +32,21 @@ RH = (matlab_results.STATION.OBSERVATIONS.relative_humidity_set_1')/100; %Snowpa
 ISWR = matlab_results.STATION.OBSERVATIONS.solar_radiation_set_1'; %Incoming shortwave radiation (W/m^w)
 VW = matlab_results.STATION.OBSERVATIONS.wind_speed_set_1'; %Wind speed (m/s)
 DW = matlab_results.STATION.OBSERVATIONS.wind_direction_set_1'; %Wind direction
-HS = (matlab_results.STATION.OBSERVATIONS.snow_depth_set_1')/100; %snow depth in meters
+HS = (matlab_results.STATION.OBSERVATIONS.snow_depth_set_1')/1000; %snow depth in meters
+HS(1:452) = 0;
+HS(4196) = HS(4195);
+HS(4197:4262) = HS(4197:4262)-2;
 TSG = zeros(length(HS))+273.15;%Assume ground surface below snow is 0 C
+
+% Find and replace nans with -999
+TA(isnan(TA))=-999;
+TSS(isnan(TSS))=-999;
+RH(isnan(RH))=-999;
+ISWR(isnan(ISWR))=-999;
+VW(isnan(VW))=-999;
+DW(isnan(DW))=-999;
+HS(isnan(HS))=-999;
+TSG(isnan(TSG))=-999;
 
 fields = 'timestamp TA RH TSG TSS HS VW DW ISWR'
 
@@ -48,12 +62,13 @@ iend = length(year);
 dtn = [year(istart:iend)',month(istart:iend)',day(istart:iend)',hour(istart:iend)',min(istart:iend)',second(istart:iend)']; %date vector
 dnum = datenum(dtn); %puts date in 7.3748e+05 format
 
+
 %Smet file operations
 StationID =  matlab_results.STATION.STID;%From Mesowest data
 StationName = matlab_results.STATION.NAME;
 latitude = str2num(matlab_results.STATION.LATITUDE); %Site lat
 longitude = str2num(matlab_results.STATION.LONGITUDE); %Site lon
-altitude = str2num(matlab_results.STATION.ELEV_DEM);  %Site altitude in meters above sea level
+altitude = str2num(matlab_results.STATION.ELEV_DEM)*0.3048;  %Site altitude in meters above sea level
 UTM_zone  = utmzone(latitude,longitude);
 %code from mapping toolbox to compute UTMX/UTMY from lat/lon
 [ellipsoid,estr] = utmgeoid(UTM_zone);
@@ -115,7 +130,7 @@ fclose(fileID);
 
 %Make some plots to quickly check data
 figure;
-sgtitle('Reynolds Peak SNOWPACK data')
+sgtitle('Atwater Peak SNOWPACK data')
 subplot(5,1,1);
 plot(dnum,VW);
 datetick('x','mm/dd','keeplimits');
