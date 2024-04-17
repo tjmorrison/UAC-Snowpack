@@ -7,7 +7,7 @@
  %close all;
 
 start_time = '202310050000'; %YYYYMMDDHHMM UTC;
-end_time =   '202404040000';
+end_time =   '202404120000';
 
 %get Mesowest data
 mesowest_url = strcat('http://api.mesowest.net/v2/stations/timeseries?stid=ATH20&token=3d5845d69f0e47aca3f810de0bb6fd3f&start=',start_time,'&end=',end_time)
@@ -35,6 +35,7 @@ DW = matlab_results.STATION.OBSERVATIONS.wind_direction_set_1'; %Wind direction
 HS = (matlab_results.STATION.OBSERVATIONS.snow_depth_set_1')/1000; %snow depth in meters
 HS(1:452) = 0;
 HS(4196) = HS(4195);
+HS(4323) = HS(4322);
 HS(4197:4262) = HS(4197:4262)-2;
 TSG = zeros(length(HS))+273.15;%Assume ground surface below snow is 0 C
 

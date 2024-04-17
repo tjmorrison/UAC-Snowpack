@@ -8,8 +8,8 @@ Dates <- scanProfileDates(Filename)
 print(Dates)
 
 ## Read a single profile by date and plot
-ProfileDate <- Dates[4257]
-Profile <- snowprofilePro(Filename, ProfileDate = ProfileDate)
+ProfileDateInterest <- Dates[1765]
+Profile <- snowprofilePro(Filename, ProfileDate = ProfileDateInterest)
 plot(Profile)
 
 ## Read entire time series and plot

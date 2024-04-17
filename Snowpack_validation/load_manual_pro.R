@@ -2,7 +2,7 @@
 
 library(sarp.snowprofile)
 #Load validation pit
-Filename <- "/Users/travismorrison/Library/CloudStorage/OneDrive-Personal/Research/Projects/UAC_SNOWPACK/validation_pits/Atwater 3_19_24-19-Mar.caaml"
+Filename <- "/Users/travismorrison/Library/CloudStorage/OneDrive-Personal/Research/Projects/UAC_SNOWPACK/validation_pits/202403191100.SimpleProfile-v5.caaml"
 Profile <- snowprofileCaaml(Filename)
 
 plot(Profile)
