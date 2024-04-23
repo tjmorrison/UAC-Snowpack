@@ -25,7 +25,7 @@ dtwAlignment <- dtwSP(SPpairs$modeled, SPpairs$manual, open.end = FALSE)
 
 
 ## Plot alignment:
-#plotSPalignment(dtwAlignment = dtwAlignment)
+plotSPalignment(dtwAlignment = dtwAlignment)
 
 ## Inspect local cost:
 plotCostDensitySP(dtwAlignment)
