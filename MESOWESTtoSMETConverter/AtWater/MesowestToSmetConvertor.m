@@ -81,7 +81,7 @@ utmstruct = defaultm(utm(utmstruct));
 easting = UTMx; %UTMX
 northing = UTMy; %UTMY
 nodata = -999;
-tz = -6; %Utah offset between MST and UTC time zones MST = UTC - 6
+tz = 1; %Utah offset between MST and UTC time zones MST = UTC - 6
 source = 'University of Utah EFD Lab';
 
 %Start writing out Snowpack .smet file
