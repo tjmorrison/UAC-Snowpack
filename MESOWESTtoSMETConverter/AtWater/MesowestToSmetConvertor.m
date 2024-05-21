@@ -7,7 +7,7 @@
  %close all;
 
 start_time = '202310050000'; %YYYYMMDDHHMM UTC;
-end_time =   '202404120000';
+end_time =   '202405150000';
 
 %get Mesowest data
 mesowest_url = strcat('http://api.mesowest.net/v2/stations/timeseries?stid=ATH20&token=3d5845d69f0e47aca3f810de0bb6fd3f&start=',start_time,'&end=',end_time)
