@@ -268,14 +268,63 @@ def delhrrrfiles():
         for file in filelist:
             os.remove(file)
 
+def get_hrrr_forecast(sitelat,sitelon,maxprocesses = 10):
+    # Make scratch directory if needed
+    if not os.path.exists(scratchdir):
+        os.makedirs(scratchdir)
+
+    # Determine time to process if not entered on command line
+    if len(sys.argv) < 2 or not sys.argv[1]:
+        run_date = datetime.datetime.utcnow() - datetime.timedelta(hours=1) 
+
+    # Otherwise use user specified time entered on command line
+    # Format sys.argv[1]: YYYY-MM-DY sys.argv[2]: HH:00:00
+    else:
+        run_date = pd.Timestamp(sys.argv[1]+' '+sys.argv[2])
+
+    # Get rid of mm ss and extract yr mn dy hr
+    run_date = run_date.strftime('%Y-%m-%d-%H')
+    yr,mn,dy,hr = str(run_date).split('-')
+    if (hr == '00' or hr == '06' or hr == '12' or hr == '18'):
+        maxfhr = 48
+    else:
+        maxfhr = 18 
+    fhrs = tuple(range(maxfhr+1))
+    items = [(yr,mn,dy,hr,fhr) for fhr in fhrs]
+
+
+    # Parallel process if requested
+    # Must be run parallel to get output file
+    start_time = time.time()
+
+
+    fhrs = tuple(range(maxfhr+1))
+    items = [(yr,mn,dy,hr,fhr) for fhr in fhrs]
+    processes = min(maxfhr+1, maxprocesses)
+    print('Running with '+str(processes)+' processes')
+    with Pool(processes=processes) as p:
+        output = p.starmap(processhrrr, items)
+    columns = ['INIT (YYYYMMDDHH UTC)','FHR','Grid Point Lat','Grid Point Lon','Grid Point Elev (m)','PSFC (PA)','TSFC (K)','T2m (K)','RH2m (%)',
+            'Wind Speed 10m (m/s)','Wind Direction 10 m (deg)','Downward Short Wave (W/m2)', 'Upward Short Wave (W/m2)',
+            'Downward Long Wave (W/m2)','Upward Long Wave (W/m2)','Water Equiv Precip (mm)',
+            'Wet-Bulb Zero Height (m)','Snow-to-Liquid Ratio','Snowfall (cm)']
+    sitedf = pd.DataFrame(output, columns=columns)
+    print(sitedf)
+    sitedf.to_csv('./hrrr_to_snowpack_'+yr+mn+dy+hr+'.csv', index=False)
+
+            
+    # Delete any existing grib2 or idx files
+    delhrrrfiles()
+
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print('Elapsed time: ' + str(elapsed_time))
+
+    print('Processing complete')
+
 # ------------------ MAIN PROGRAM ----------------
 if __name__ == "__main__":
  
-
-    # serial or parallel?
-    # serial helpful for debugging but parallel recommended
-    processing = 'parallel'
-
     # Maximum number of parallel processes if being run parallel
     maxprocesses = 10
 
@@ -324,20 +373,20 @@ if __name__ == "__main__":
     # Must be run parallel to get output file
     start_time = time.time()
 
-    if processing == 'parallel':
-        fhrs = tuple(range(maxfhr+1))
-        items = [(yr,mn,dy,hr,fhr) for fhr in fhrs]
-        processes = min(maxfhr+1, maxprocesses)
-        print('Running with '+str(processes)+' processes')
-        with Pool(processes=processes) as p:
-            output = p.starmap(processhrrr, items)
-        columns = ['INIT (YYYYMMDDHH UTC)','FHR','Grid Point Lat','Grid Point Lon','Grid Point Elev (m)','PSFC (PA)','TSFC (K)','T2m (K)','RH2m (%)',
-                'Wind Speed 10m (m/s)','Wind Direction 10 m (deg)','Downward Short Wave (W/m2)', 'Upward Short Wave (W/m2)',
-                'Downward Long Wave (W/m2)','Upward Long Wave (W/m2)','Water Equiv Precip (mm)',
-                'Wet-Bulb Zero Height (m)','Snow-to-Liquid Ratio','Snowfall (cm)']
-        sitedf = pd.DataFrame(output, columns=columns)
-        print(sitedf)
-        sitedf.to_csv('./hrrr_to_snowpack_'+yr+mn+dy+hr+'.csv', index=False)
+
+    fhrs = tuple(range(maxfhr+1))
+    items = [(yr,mn,dy,hr,fhr) for fhr in fhrs]
+    processes = min(maxfhr+1, maxprocesses)
+    print('Running with '+str(processes)+' processes')
+    with Pool(processes=processes) as p:
+        output = p.starmap(processhrrr, items)
+    columns = ['INIT (YYYYMMDDHH UTC)','FHR','Grid Point Lat','Grid Point Lon','Grid Point Elev (m)','PSFC (PA)','TSFC (K)','T2m (K)','RH2m (%)',
+            'Wind Speed 10m (m/s)','Wind Direction 10 m (deg)','Downward Short Wave (W/m2)', 'Upward Short Wave (W/m2)',
+            'Downward Long Wave (W/m2)','Upward Long Wave (W/m2)','Water Equiv Precip (mm)',
+            'Wet-Bulb Zero Height (m)','Snow-to-Liquid Ratio','Snowfall (cm)']
+    sitedf = pd.DataFrame(output, columns=columns)
+    print(sitedf)
+    sitedf.to_csv('./hrrr_to_snowpack_'+yr+mn+dy+hr+'.csv', index=False)
 
             
     # Delete any existing grib2 or idx files
