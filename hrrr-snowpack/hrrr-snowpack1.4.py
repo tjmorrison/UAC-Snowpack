@@ -291,7 +291,7 @@ def get_hrrr_forecast(forecast_start_time,sitelat,sitelon,siteelev = 2668.0,mlth
         os.makedirs(scratchdir)
 
     # Get rid of mm ss and extract yr mn dy hr
-    run_date = run_date.strftime('%Y-%m-%d-%H')
+    run_date = forecast_start_time.strftime('%Y-%m-%d-%H')
     yr,mn,dy,hr = str(run_date).split('-')
     if (hr == '00' or hr == '06' or hr == '12' or hr == '18'):
         maxfhr = 48
@@ -346,7 +346,7 @@ if __name__ == "__main__":
     mlthick = 300
 
     forecast_start_time = datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=1) 
-
+    
     forecast_df = get_hrrr_forecast(forecast_start_time,sitelat,sitelon,siteelev = 2668.0,mlthick = 300,maxprocesses = 10)
 
     forecast_df.head()

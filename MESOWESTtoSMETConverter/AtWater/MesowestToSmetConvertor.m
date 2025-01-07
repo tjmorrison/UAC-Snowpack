@@ -25,7 +25,7 @@ min(i) =  str2num(matlab_results.STATION.OBSERVATIONS.date_time{i}(15:16));
 second(i) =  str2num(matlab_results.STATION.OBSERVATIONS.date_time{i}(18:19));
 end
 
-
+%%
 TA = matlab_results.STATION.OBSERVATIONS.air_temp_set_1'+273.15;
 TSS = matlab_results.STATION.OBSERVATIONS.surface_temp_set_1'+273.15;
 RH = (matlab_results.STATION.OBSERVATIONS.relative_humidity_set_1')/100; %Snowpack needs RH as fraction between 0 and 1
@@ -38,7 +38,7 @@ HS(4196) = HS(4195);
 HS(4323) = HS(4322);
 HS(4197:4262) = HS(4197:4262)-2;
 TSG = zeros(length(HS))+273.15;%Assume ground surface below snow is 0 C
-
+%%
 % Find and replace nans with -999
 TA(isnan(TA))=-999;
 TSS(isnan(TSS))=-999;
@@ -167,4 +167,18 @@ datetick('x','mm/dd','keeplimits');
 xlabel('UTC');
 ylabel('Snow Depth (cm)')
 datetickzoom
+%%
+figure()
+plot(dnum,TSS,'DisplayName','Surface Temp');
+hold on
+plot(dnum,TA,'DisplayName','Air Temp');
+datetick('x','mm/dd','keeplimits');
+xlabel('UTC');
+ylabel('Temperatures (K)')
+legend
+%legend('Surface Temp','Air Temp')
+grid()
+datetickzoom
 
+%%
+writematrix([datevec(dnum),TSS',TA'],'ATH20_TSS_TA.csv') 

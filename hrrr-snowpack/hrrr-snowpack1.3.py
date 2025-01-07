@@ -301,7 +301,7 @@ if version != '3.9':
     print('Needs to be 3.9')
     sys.exit
 
-# Delete any existing grib2 or idx files
+# Delete any existing grib2 or idx files - This doesn't work if you have a scratch dir
 delhrrrfiles()
 
 # Make scratch directory if needed
