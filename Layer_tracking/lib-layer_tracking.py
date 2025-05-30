@@ -28,12 +28,11 @@ def parse_gtype(grain_code):
     try:
         primary_gtype = grain_code // 100
         secondary_gtype =  (grain_code % 100) // 10
-        tertiary_gtype = grain_code % 10
+        tertiary_gtype = grain_code % 104
     except:
          print("grain code parser failed")
          
     return primary_gtype,secondary_gtype, tertiary_gtype
-
 
 def identify_surface_hoar(profile):
     """_summary_
@@ -46,6 +45,8 @@ def identify_surface_hoar(profile):
     """
     #Swiss Code F1F2F3 Surface Hoar Code is 6, for more information on data formats see : https://snowpack.slf.ch/doc-release/html/snowpackio.html
     #initialize boolean
+    #code 514 is for surface hoar, 0514,3,grain type, grain size (mm), and density (kg m-3) of SH at surface - if -999 no surface hoar
+    #appears that 514 is not being read by the current library - will leave as is for now. 
     sh_bool= [0,0,0] #[primary bool, secondary bool, tertiary bool]
     try:
         primary_gtype,secondary_gtype, tertiary_gtype = parse_gtype(profile['0513'].iloc[-1])
