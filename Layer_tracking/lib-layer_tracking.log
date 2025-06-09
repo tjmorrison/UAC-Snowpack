@@ -1,0 +1,146 @@
+2025-05-06 20:31:22,902 - INFO - Entering main
+2025-05-06 20:31:22,902 - INFO - Dev flag: True
+2025-05-06 20:31:22,902 - INFO - Entering verification test cases
+2025-05-06 20:31:22,902 - ERROR - Error processing file empty.pro: name 'file_path' is not defined
+2025-05-06 20:31:22,902 - ERROR - Error processing file no_snow.pro: name 'file_path' is not defined
+2025-05-06 20:31:22,902 - ERROR - Error processing file Readme.md: name 'file_path' is not defined
+2025-05-06 20:31:22,902 - ERROR - Error processing file ice_block.pro: name 'file_path' is not defined
+2025-05-06 20:31:22,902 - INFO - Entering validation test cases
+2025-05-06 20:31:22,902 - INFO - Processing unit test: ./Valdiation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 20:31:22,904 - ERROR - Error processing file ATH201_10_05_2024_03_27_2025.pro: Error tokenizing data. C error: Expected 1 fields in line 10, saw 2
+
+2025-05-06 20:32:17,682 - INFO - Entering main
+2025-05-06 20:32:17,682 - INFO - Dev flag: True
+2025-05-06 20:32:17,682 - INFO - Entering verification test cases
+2025-05-06 20:32:17,682 - INFO - Processing unit test: ./Unit_profiles/empty.pro
+2025-05-06 20:32:17,683 - ERROR - Error processing file empty.pro: No columns to parse from file
+2025-05-06 20:32:17,683 - INFO - Processing unit test: ./Unit_profiles/no_snow.pro
+2025-05-06 20:32:17,683 - ERROR - Error processing file no_snow.pro: Error tokenizing data. C error: Expected 1 fields in line 10, saw 2
+
+2025-05-06 20:32:17,683 - ERROR - Error processing file Readme.md: Error tokenizing data. C error: Expected 1 fields in line 10, saw 2
+
+2025-05-06 20:32:17,683 - INFO - Processing unit test: ./Unit_profiles/ice_block.pro
+2025-05-06 20:32:17,684 - ERROR - Error processing file ice_block.pro: Error tokenizing data. C error: Expected 1 fields in line 10, saw 2
+
+2025-05-06 20:32:17,684 - INFO - Entering validation test cases
+2025-05-06 20:32:17,684 - INFO - Processing unit test: ./Valdiation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 20:32:17,684 - ERROR - Error processing file ATH201_10_05_2024_03_27_2025.pro: Error tokenizing data. C error: Expected 1 fields in line 10, saw 2
+
+2025-05-06 20:37:18,939 - INFO - Entering main
+2025-05-06 20:37:18,939 - INFO - Dev flag: True
+2025-05-06 20:37:18,939 - INFO - Entering verification test cases
+2025-05-06 20:37:18,939 - INFO - Processing unit test: ./Unit_profiles/empty.pro
+2025-05-06 20:37:18,939 - ERROR - Error processing file empty.pro: list index out of range
+2025-05-06 20:37:18,939 - INFO - Processing unit test: ./Unit_profiles/no_snow.pro
+2025-05-06 20:37:18,939 - ERROR - Error processing file no_snow.pro: list index out of range
+2025-05-06 20:37:18,940 - ERROR - Error processing file Readme.md: list index out of range
+2025-05-06 20:37:18,940 - INFO - Processing unit test: ./Unit_profiles/ice_block.pro
+2025-05-06 20:37:18,945 - INFO - identify_surface_hoar result for ice_block.pro: 0
+2025-05-06 20:37:18,945 - INFO - Entering validation test cases
+2025-05-06 20:37:18,945 - INFO - Processing unit test: ./Valdiation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 20:37:34,464 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: 2
+2025-05-06 21:12:53,787 - INFO - Entering main
+2025-05-06 21:12:53,787 - INFO - Dev flag: True
+2025-05-06 21:12:53,787 - INFO - Entering verification test cases
+2025-05-06 21:12:53,787 - INFO - Processing unit test: ./Unit_profiles/empty.pro
+2025-05-06 21:12:53,787 - ERROR - Error processing file empty.pro: list index out of range
+2025-05-06 21:12:53,787 - INFO - Processing unit test: ./Unit_profiles/no_snow.pro
+2025-05-06 21:12:53,787 - ERROR - Error processing file no_snow.pro: list index out of range
+2025-05-06 21:12:53,788 - ERROR - Error processing file Readme.md: list index out of range
+2025-05-06 21:12:53,788 - INFO - Processing unit test: ./Unit_profiles/ice_block.pro
+2025-05-06 21:12:53,789 - INFO - identify_surface_hoar result for ice_block.pro: [0, 0, 0]
+2025-05-06 21:12:53,789 - INFO - identify_surface_hoar result for ice_block.pro: None
+2025-05-06 21:12:53,790 - INFO - Entering validation test cases
+2025-05-06 21:12:53,790 - INFO - Processing unit test: ./Validation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 21:13:09,388 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: [0, 1, 0]
+2025-05-06 21:13:09,388 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: None
+2025-05-06 21:14:37,590 - INFO - Entering main
+2025-05-06 21:14:37,590 - INFO - Dev flag: True
+2025-05-06 21:14:37,590 - INFO - Entering verification test cases
+2025-05-06 21:14:37,590 - INFO - Processing unit test: ./Unit_profiles/empty.pro
+2025-05-06 21:14:37,590 - ERROR - Error processing file empty.pro: list index out of range
+2025-05-06 21:14:37,590 - INFO - Processing unit test: ./Unit_profiles/no_snow.pro
+2025-05-06 21:14:37,590 - ERROR - Error processing file no_snow.pro: list index out of range
+2025-05-06 21:14:37,591 - ERROR - Error processing file Readme.md: list index out of range
+2025-05-06 21:14:37,591 - INFO - Processing unit test: ./Unit_profiles/ice_block.pro
+2025-05-06 21:14:37,592 - INFO - identify_surface_hoar result for ice_block.pro: [0, 0, 0]
+2025-05-06 21:14:37,593 - ERROR - Error processing file ice_block.pro: local variable 'search_depth' referenced before assignment
+2025-05-06 21:14:37,593 - INFO - Entering validation test cases
+2025-05-06 21:14:37,593 - INFO - Processing unit test: ./Validation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 21:14:53,263 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: [0, 1, 0]
+2025-05-06 21:14:53,263 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: ([0], 50.04999999999974)
+2025-05-06 21:16:45,833 - INFO - Entering main
+2025-05-06 21:16:45,834 - INFO - Dev flag: True
+2025-05-06 21:16:45,834 - INFO - Entering verification test cases
+2025-05-06 21:16:45,834 - INFO - Processing unit test: ./Unit_profiles/empty.pro
+2025-05-06 21:16:45,834 - ERROR - Error processing file empty.pro: list index out of range
+2025-05-06 21:16:45,834 - INFO - Processing unit test: ./Unit_profiles/no_snow.pro
+2025-05-06 21:16:45,834 - ERROR - Error processing file no_snow.pro: list index out of range
+2025-05-06 21:16:45,834 - ERROR - Error processing file Readme.md: list index out of range
+2025-05-06 21:16:45,834 - INFO - Processing unit test: ./Unit_profiles/ice_block.pro
+2025-05-06 21:16:45,836 - INFO - identify_surface_hoar result for ice_block.pro: [0, 0, 0]
+2025-05-06 21:16:45,836 - ERROR - Error processing file ice_block.pro: local variable 'search_depth' referenced before assignment
+2025-05-06 21:16:45,836 - INFO - Entering validation test cases
+2025-05-06 21:16:45,836 - INFO - Processing unit test: ./Validation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 21:17:01,373 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: [0, 1, 0]
+2025-05-06 21:17:01,375 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: ([0], 50.96499999999974)
+2025-05-06 21:18:21,776 - INFO - Entering main
+2025-05-06 21:18:21,777 - INFO - Dev flag: True
+2025-05-06 21:18:21,777 - INFO - Entering verification test cases
+2025-05-06 21:18:21,777 - INFO - Processing unit test: ./Unit_profiles/empty.pro
+2025-05-06 21:18:21,777 - ERROR - Error processing file empty.pro: list index out of range
+2025-05-06 21:18:21,777 - INFO - Processing unit test: ./Unit_profiles/no_snow.pro
+2025-05-06 21:18:21,777 - ERROR - Error processing file no_snow.pro: list index out of range
+2025-05-06 21:18:21,777 - ERROR - Error processing file Readme.md: list index out of range
+2025-05-06 21:18:21,777 - INFO - Processing unit test: ./Unit_profiles/ice_block.pro
+2025-05-06 21:18:21,779 - INFO - identify_surface_hoar result for ice_block.pro: [0, 0, 0]
+2025-05-06 21:18:21,779 - ERROR - Error processing file ice_block.pro: local variable 'search_depth' referenced before assignment
+2025-05-06 21:18:21,779 - INFO - Entering validation test cases
+2025-05-06 21:18:21,779 - INFO - Processing unit test: ./Validation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 21:18:37,127 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: [0, 1, 0]
+2025-05-06 21:18:37,129 - ERROR - Error processing file ATH201_10_05_2024_03_27_2025.pro: local variable 'search_depth' referenced before assignment
+2025-05-06 21:19:46,942 - INFO - Entering main
+2025-05-06 21:19:46,943 - INFO - Dev flag: True
+2025-05-06 21:19:46,943 - INFO - Entering verification test cases
+2025-05-06 21:19:46,943 - INFO - Processing unit test: ./Unit_profiles/empty.pro
+2025-05-06 21:19:46,943 - ERROR - Error processing file empty.pro: list index out of range
+2025-05-06 21:19:46,943 - INFO - Processing unit test: ./Unit_profiles/no_snow.pro
+2025-05-06 21:19:46,944 - ERROR - Error processing file no_snow.pro: list index out of range
+2025-05-06 21:19:46,944 - ERROR - Error processing file Readme.md: list index out of range
+2025-05-06 21:19:46,944 - INFO - Processing unit test: ./Unit_profiles/ice_block.pro
+2025-05-06 21:19:46,946 - INFO - identify_surface_hoar result for ice_block.pro: [0, 0, 0]
+2025-05-06 21:19:46,946 - ERROR - Error processing file ice_block.pro: local variable 'search_depth' referenced before assignment
+2025-05-06 21:19:46,946 - INFO - Entering validation test cases
+2025-05-06 21:19:46,946 - INFO - Processing unit test: ./Validation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 21:20:02,634 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: [0, 1, 0]
+2025-05-06 21:20:02,635 - ERROR - Error processing file ATH201_10_05_2024_03_27_2025.pro: local variable 'search_depth' referenced before assignment
+2025-05-06 21:20:30,512 - INFO - Entering main
+2025-05-06 21:20:30,512 - INFO - Dev flag: True
+2025-05-06 21:20:30,512 - INFO - Entering verification test cases
+2025-05-06 21:20:30,512 - INFO - Processing unit test: ./Unit_profiles/empty.pro
+2025-05-06 21:20:30,512 - ERROR - Error processing file empty.pro: list index out of range
+2025-05-06 21:20:30,512 - INFO - Processing unit test: ./Unit_profiles/no_snow.pro
+2025-05-06 21:20:30,512 - ERROR - Error processing file no_snow.pro: list index out of range
+2025-05-06 21:20:30,512 - ERROR - Error processing file Readme.md: list index out of range
+2025-05-06 21:20:30,512 - INFO - Processing unit test: ./Unit_profiles/ice_block.pro
+2025-05-06 21:20:30,514 - INFO - identify_surface_hoar result for ice_block.pro: [0, 0, 0]
+2025-05-06 21:20:30,514 - ERROR - Error processing file ice_block.pro: local variable 'search_depth' referenced before assignment
+2025-05-06 21:20:30,514 - INFO - Entering validation test cases
+2025-05-06 21:20:30,514 - INFO - Processing unit test: ./Validation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 21:20:45,893 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: [0, 1, 0]
+2025-05-06 21:20:45,894 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: ([0], 50.50500000000062)
+2025-05-06 21:22:40,253 - INFO - Entering main
+2025-05-06 21:22:40,253 - INFO - Dev flag: True
+2025-05-06 21:22:40,253 - INFO - Entering verification test cases
+2025-05-06 21:22:40,253 - INFO - Processing unit test: ./Unit_profiles/empty.pro
+2025-05-06 21:22:40,253 - ERROR - Error processing file empty.pro: list index out of range
+2025-05-06 21:22:40,253 - INFO - Processing unit test: ./Unit_profiles/no_snow.pro
+2025-05-06 21:22:40,254 - ERROR - Error processing file no_snow.pro: list index out of range
+2025-05-06 21:22:40,254 - ERROR - Error processing file Readme.md: list index out of range
+2025-05-06 21:22:40,254 - INFO - Processing unit test: ./Unit_profiles/ice_block.pro
+2025-05-06 21:22:40,256 - INFO - identify_surface_hoar result for ice_block.pro: [0, 0, 0]
+2025-05-06 21:22:40,256 - ERROR - Error processing file ice_block.pro: local variable 'search_depth' referenced before assignment
+2025-05-06 21:22:40,256 - INFO - Entering validation test cases
+2025-05-06 21:22:40,256 - INFO - Processing unit test: ./Validation_profiles/ATH201_10_05_2024_03_27_2025.pro
+2025-05-06 21:22:56,093 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: [0, 1, 0]
+2025-05-06 21:22:56,093 - INFO - identify_surface_hoar result for ATH201_10_05_2024_03_27_2025.pro: ([1], 9.504999999999995)
