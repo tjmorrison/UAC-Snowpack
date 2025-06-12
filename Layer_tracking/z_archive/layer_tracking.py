@@ -17,21 +17,6 @@ log.basicConfig(
 )
 
 # Functions
-# analysis.py
-
-
-
-def compute_hst(ht_series):
-    return np.array([np.max(ht) for ht in ht_series])
-
-def identify_accumulation_periods(hst, threshold_cm=10, interval_min=15):
-    interval = int(24 * (60 / interval_min))  # 24 hours
-    diff_hst = hst[interval:] - hst[:-interval]
-    dry_indices = np.where(diff_hst < threshold_cm)[0]
-    accum_indices = np.setdiff1d(np.arange(len(diff_hst)), dry_indices)
-    return dry_indices, accum_indices
-
-# utils.py
 
 def parse_gtype(grain_code):
     try:
